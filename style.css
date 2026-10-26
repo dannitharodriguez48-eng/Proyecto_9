@@ -1,0 +1,180 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    font-family: Arial, sans-serif;
+    color: #243047;
+    background-color: #f1f5f9;
+}
+
+/* Tarjeta principal */
+.tarjeta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    width: 100%;
+    max-width: 900px;
+    min-height: 260px;
+    padding: 48px 38px;
+    background-color: #ffffff;
+    border: 1px solid #dbe3ee;
+    border-radius: 18px;
+}
+
+/* Texto explicativo */
+.texto {
+    max-width: 245px;
+    font-size: 18px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.flecha {
+    color: #64748b;
+    font-size: 34px;
+}
+
+/* Menú de navegación */
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    list-style: none;
+}
+
+.menu a {
+    display: inline-block;
+    padding: 10px 2px;
+    color: #243047;
+    font-size: 17px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.menu a:hover {
+    color: #2563eb;
+}
+
+/* Cada elemento permite ubicar su tooltip */
+.item {
+    position: relative;
+}
+
+/* Caja del tooltip */
+.tooltip {
+    position: absolute;
+    z-index: 1;
+    bottom: calc(100% + 14px);
+    left: 50%;
+    width: 210px;
+    padding: 12px 14px;
+    color: #ffffff;
+    background-color: #1e293b;
+    border-radius: 9px;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.5;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+}
+
+/* Punta del tooltip */
+.tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 7px solid transparent;
+    border-top-color: #1e293b;
+}
+
+/* Mostrar el tooltip al pasar el cursor */
+.item:hover .tooltip,
+.item:focus-within .tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Efecto de aparición */
+.aparecer .tooltip {
+    transform: translate(-50%, 5px);
+}
+
+.aparecer:hover .tooltip,
+.aparecer:focus-within .tooltip {
+    transform: translate(-50%, 0);
+}
+
+/* Efecto de deslizamiento */
+.deslizar .tooltip {
+    transform: translate(-50%, 10px);
+}
+
+.deslizar:hover .tooltip,
+.deslizar:focus-within .tooltip {
+    transform: translate(-50%, 0);
+}
+
+/* Efecto de escala */
+.escalar .tooltip {
+    transform: translate(-50%, 5px) scale(0.9);
+}
+
+.escalar:hover .tooltip,
+.escalar:focus-within .tooltip {
+    transform: translate(-50%, 0) scale(1);
+}
+
+/* Adaptación a pantallas pequeñas */
+@media (max-width: 700px) {
+    .tarjeta {
+        flex-direction: column;
+        gap: 22px;
+        padding: 36px 22px;
+    }
+
+    .texto {
+        max-width: 320px;
+    }
+
+    .flecha {
+        transform: rotate(90deg);
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        gap: 18px 24px;
+    }
+}
+
+@media (max-width: 380px) {
+    body {
+        padding: 14px;
+    }
+
+    .tarjeta {
+        padding: 28px 16px;
+    }
+
+    .menu {
+        gap: 12px 18px;
+    }
+
+    .tooltip {
+        width: 180px;
+    }
+}
